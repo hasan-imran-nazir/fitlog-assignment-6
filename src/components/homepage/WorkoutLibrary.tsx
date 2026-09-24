@@ -11,7 +11,7 @@ const getWorkouts = async (): Promise<IWorkoutTypes[]> => {
 };
 
 const WorkoutLibrary = async () => {
-  const workouts = await getWorkouts();
+  const workoutdata = await getWorkouts();
   return (
     <div className="container mx-auto mt-16">
       <h2 className="font-bold text-3xl">THE LIBRARY</h2>
@@ -19,7 +19,7 @@ const WorkoutLibrary = async () => {
         Twelve lifts covering every major muscle group.
       </p>
       <div className="grid grid-cols-3 gap-6">
-        {workouts.map((item) => (
+        {workoutdata.map((item:IWorkoutTypes) => (
           <WorkoutCard key={item.id} workout={item} />
         ))}
       </div>
