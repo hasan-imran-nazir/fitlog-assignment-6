@@ -18,6 +18,22 @@ const AddSaveCard = (props: IAddSaveCardProps) => {
   const context = useContext(workoutContext);
   if (!context) return null;
   const { workout, list } = props;
+  const handleDone = () => {
+    context.setAddWorkout((previous) =>
+      previous.filter((item) => item.id !== workout.id),
+    );
+    toast.success(`Workout logged - nice work`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide,
+    });
+  };
   const handleRemove = () => {
     if (list === "today") {
       context.setAddWorkout((previous) =>
@@ -101,7 +117,10 @@ const AddSaveCard = (props: IAddSaveCardProps) => {
         </Link>
 
         {list === "today" && (
-          <button className="flex items-center gap-1.5 bg-[#ccff00] hover:bg-[#b8e600] text-black text-xs font-bold px-4 py-2.5 rounded-full transition-colors cursor-pointer">
+          <button
+            onClick={handleDone}
+            className="flex items-center gap-1.5 bg-[#ccff00] hover:bg-[#b8e600] text-black text-xs font-bold px-4 py-2.5 rounded-full transition-colors cursor-pointer"
+          >
             <FaCheck className="text-sm" />
             <span>Mark as Done</span>
           </button>
