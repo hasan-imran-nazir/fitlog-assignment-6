@@ -62,17 +62,17 @@ const Page = () => {
           name="my_tabs_3"
           className="tab"
           aria-label="Today's Plan"
-          defaultChecked
+          checked={activeTab === "today"}
           onChange={() => setActiveTab("today")}
         />
         <div className="tab-content bg-[#111317] p-6 ">
           <div className="flex flex-col gap-4">
             {context.addWorkout.length > 0 ? (
               context.addWorkout.map((workout: IWorkoutTypes) => (
-                <AddSaveCard key={workout.id} workout={workout} />
+                <AddSaveCard key={workout.id} workout={workout} list="today" />
               ))
             ) : (
-              <div className="flex flex-col items-center justify-center gap-2 bg-[#111317]">
+              <div className="flex flex-col items-center justify-center gap-2 bg-[#111317] py-24">
                 <h2 className="text-xl font-bold text-white">
                   NOTHING HERE YET
                 </h2>
@@ -98,11 +98,28 @@ const Page = () => {
           checked={activeTab === "saved"}
           onChange={() => setActiveTab("saved")}
         />
-        <div className="tab-content bg-base-100 border-base-300 p-6">
+        <div className="tab-content bg-[#111317] p-6">
           <div className="flex flex-col gap-4">
-            {context.saveWorkout.map((workout: IWorkoutTypes) => (
-              <AddSaveCard key={workout.id} workout={workout} />
-            ))}
+            {context.saveWorkout.length ? (
+              context.saveWorkout.map((workout: IWorkoutTypes) => (
+                <AddSaveCard key={workout.id} workout={workout} list="saved" />
+              ))
+            ) : (
+              <div className="flex flex-col items-center justify-center gap-2 bg-[#111317] py-24">
+                <h2 className="text-xl font-bold text-white">
+                  NOTHING HERE YET
+                </h2>
+                <p className="text-[#A1A1AA]">
+                  Browse the library and add a lift to get today moving.
+                </p>
+                <Link
+                  href="/"
+                  className="bg-[#CCFF00] text-black px-6 py-2.5 rounded-lg mt-4 inline-block"
+                >
+                  Browse Library
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
