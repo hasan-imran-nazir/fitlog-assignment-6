@@ -140,6 +140,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
             <AddToday workout={workout} />
 
             <SaveWorkout workout={workout}/>
+
           </div>
         </div>
       </div>

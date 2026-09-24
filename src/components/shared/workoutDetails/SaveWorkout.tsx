@@ -3,6 +3,7 @@ import { workoutContext } from "@/context/WorkoutProvider";
 import { IWorkoutTypes } from "@/types/workout.types";
 import { useContext } from "react";
 import { FaRegBookmark } from "react-icons/fa";
+import { Slide, toast } from "react-toastify";
 interface AddTodayProps {
   workout: IWorkoutTypes;
 }
@@ -17,7 +18,29 @@ const SaveWorkout = (props: AddTodayProps) => {
 
     if (!isAlreadySave) {
       context.setSaveWorkout([...context.saveWorkout, props.workout]);
-      alert(`You have saved ${props.workout.name}`);
+      toast.info(`You have Saved ${props.workout.name}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Slide,
+      });
+    } else {
+      toast.error(`You have already saved ${props.workout.name}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Slide,
+      });
     }
   };
   return (

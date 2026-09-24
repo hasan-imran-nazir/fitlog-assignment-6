@@ -5,14 +5,16 @@ const Navbar = () => {
   return (
     <div className="bg-[#0C0D10]">
       <header className="w-full px-6 py-4 flex items-center justify-between container mx-auto">
-        <div className="flex items-center gap-2.5">
-          <Image src={logo} alt="Logo" className="w-6 h-6" />
-          <span className="font-extrabold text-lg tracking-wider text-white">
-            FITLOG
-          </span>
-        </div>
+        <Link href="/">
+          <div className="flex items-center gap-2.5">
+            <Image src={logo} alt="Logo" className="w-6 h-6" />
+            <span className="font-extrabold text-lg tracking-wider text-white">
+              FITLOG
+            </span>
+          </div>
+        </Link>
         <div className="flex items-center gap-1 p-1.5 rounded-full border border-zinc-800/40">
-          <Link href="#">
+          <Link href="/">
             <button className="rounded-full px-5 py-2 text-sm font-semibold text-[#9CA3AF] cursor-pointer">
               Workouts
             </button>
