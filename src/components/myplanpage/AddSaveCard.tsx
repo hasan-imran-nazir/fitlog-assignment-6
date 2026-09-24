@@ -10,7 +10,7 @@ import { IWorkoutTypes } from "@/types/workout.types";
 const AddSaveCard = (props: { workout: IWorkoutTypes }) => {
   const { workout } = props;
   return (
-    <div className="bg-[#12141a] border border-[#1e222d] rounded-2xl p-4 flex items-center justify-between gap-4">
+    <div className="bg-[#14171E] border border-[#1e222d] rounded-2xl p-4 flex items-center justify-between gap-4">
       <div className="flex items-center gap-4">
         <div className="relative w-32 h-20 rounded-xl overflow-hidden shrink-0">
           <Image
@@ -32,19 +32,21 @@ const AddSaveCard = (props: { workout: IWorkoutTypes }) => {
           </p>
 
           <div className="flex items-center gap-3 text-xs text-zinc-400 pt-1">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 text-[#ccff00]">
               <FaRegClock />
-              <span>{workout.duration} min</span>
+              <span className="text-[#D1D5DB]">
+                {workout.duration} min
+              </span>
             </div>
             <div className="flex items-center gap-1 text-[#ccff00]">
               <FaFireFlameCurved />
-              <span className="text-zinc-400">
+              <span className="text-[#D1D5DB]">
                 {workout.caloriesBurned} kcal
               </span>
             </div>
             <div className="flex items-center gap-1 text-[#ccff00]">
               <FaRegStar />
-              <span className="text-zinc-400">{workout.rating}</span>
+              <span className="text-[#D1D5DB]">{workout.rating}</span>
             </div>
           </div>
         </div>

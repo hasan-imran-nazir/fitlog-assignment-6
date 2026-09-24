@@ -1,17 +1,24 @@
 "use client";
 import AddSaveCard from "@/components/myplanpage/AddSaveCard";
 import { workoutContext } from "@/context/WorkoutProvider";
-import { useContext } from "react";
+import { IWorkoutTypes } from "@/types/workout.types";
+import { useContext, useState } from "react";
+import Link from "next/link";
 const Page = () => {
+  const [activeTab, setActiveTab] = useState<"today" | "saved">("today");
+
   const context = useContext(workoutContext);
   if (!context) {
     return null;
   }
-  const totalMinutes = context.addWorkout.reduce(
+  const selectedWorkouts =
+    activeTab === "today" ? context.addWorkout : context.saveWorkout;
+
+  const totalMinutes = selectedWorkouts.reduce(
     (total, workout) => total + workout.duration,
     0,
   );
-  const totalCalories = context.addWorkout.reduce(
+  const totalCalories = selectedWorkouts.reduce(
     (total, workout) => total + workout.caloriesBurned,
     0,
   );
@@ -27,7 +34,7 @@ const Page = () => {
         <div className="flex flex-col pl-2">
           <span className="text-[#8A92A0] text-xs mb-1">Exercises</span>
           <span className="text-4xl font-extrabold text-[#ccff00]">
-            {context.addWorkout.length}
+            {selectedWorkouts.length}
           </span>
         </div>
 
@@ -49,19 +56,38 @@ const Page = () => {
           </span>
         </div>
       </div>
-      <div className="tabs tabs-lift">
+      <div className="tabs tabs-lift ">
         <input
           type="radio"
           name="my_tabs_3"
           className="tab"
           aria-label="Today's Plan"
+          defaultChecked
+          onChange={() => setActiveTab("today")}
         />
-        <div className="tab-content bg-base-100 border-base-300 p-6">
-          {
-            context.addWorkout.map((workout) => (
-              <AddSaveCard key={workout.id} workout={workout} />
-            ))
-          }
+        <div className="tab-content bg-[#111317] p-6 ">
+          <div className="flex flex-col gap-4">
+            {context.addWorkout.length > 0 ? (
+              context.addWorkout.map((workout: IWorkoutTypes) => (
+                <AddSaveCard key={workout.id} workout={workout} />
+              ))
+            ) : (
+              <div className="flex flex-col items-center justify-center gap-2 bg-[#111317]">
+                <h2 className="text-xl font-bold text-white">
+                  NOTHING HERE YET
+                </h2>
+                <p className="text-[#A1A1AA]">
+                  Browse the library and add a lift to get today moving.
+                </p>
+                <Link
+                  href="/"
+                  className="bg-[#CCFF00] text-black px-6 py-2.5 rounded-lg mt-4 inline-block"
+                >
+                  Browse Library
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
 
         <input
@@ -69,10 +95,15 @@ const Page = () => {
           name="my_tabs_3"
           className="tab"
           aria-label="Saved"
-          defaultChecked
+          checked={activeTab === "saved"}
+          onChange={() => setActiveTab("saved")}
         />
         <div className="tab-content bg-base-100 border-base-300 p-6">
-          Tab content 2
+          <div className="flex flex-col gap-4">
+            {context.saveWorkout.map((workout: IWorkoutTypes) => (
+              <AddSaveCard key={workout.id} workout={workout} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

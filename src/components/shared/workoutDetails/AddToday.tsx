@@ -26,7 +26,7 @@ const AddToday = (props: AddTodayProps) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "dark",
         transition: Slide,
       });
     }else {
@@ -38,7 +38,7 @@ const AddToday = (props: AddTodayProps) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "dark",
         transition: Slide,
       });
     }
