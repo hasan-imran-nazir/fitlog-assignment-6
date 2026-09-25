@@ -6,8 +6,24 @@ import { useContext, useState } from "react";
 import Link from "next/link";
 const Page = () => {
   const [activeTab, setActiveTab] = useState<"today" | "saved">("today");
-
   const context = useContext(workoutContext);
+  const [sortBy, setSortBy] = useState<"Duration" | "Calories" | "Rating">(
+    "Duration",
+  );
+  const sortWorkouts = (workouts: IWorkoutTypes[]) =>{
+    const sortedWorkouts = [...workouts];
+    if (sortBy === "Duration") {
+      sortedWorkouts.sort((a, b) => a.duration - b.duration);
+    }else if (sortBy === "Calories") {
+      sortedWorkouts.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+    }else if (sortBy === "Rating") {
+      sortedWorkouts.sort((a, b) => b.rating - a.rating);
+    }
+    return sortedWorkouts;
+  }
+  const sortedAddedWorkouts = sortWorkouts(context?.addWorkout || []);
+  const sortedSavedWorkouts = sortWorkouts(context?.saveWorkout || []);
+
   if (!context) {
     return null;
   }
@@ -56,7 +72,7 @@ const Page = () => {
           </span>
         </div>
       </div>
-      <div className="tabs tabs-lift ">
+      <div className="tabs tabs-lift mt-6">
         <input
           type="radio"
           name="my_tabs_3"
@@ -67,8 +83,8 @@ const Page = () => {
         />
         <div className="tab-content bg-[#111317] p-6 ">
           <div className="flex flex-col gap-4">
-            {context.addWorkout.length > 0 ? (
-              context.addWorkout.map((workout: IWorkoutTypes) => (
+            {sortedAddedWorkouts.length > 0 ? (
+              sortedAddedWorkouts.map((workout: IWorkoutTypes) => (
                 <AddSaveCard key={workout.id} workout={workout} list="today" />
               ))
             ) : (
@@ -100,8 +116,8 @@ const Page = () => {
         />
         <div className="tab-content bg-[#111317] p-6">
           <div className="flex flex-col gap-4">
-            {context.saveWorkout.length ? (
-              context.saveWorkout.map((workout: IWorkoutTypes) => (
+            {sortedSavedWorkouts.length ? (
+              sortedSavedWorkouts.map((workout: IWorkoutTypes) => (
                 <AddSaveCard key={workout.id} workout={workout} list="saved" />
               ))
             ) : (
@@ -121,6 +137,22 @@ const Page = () => {
               </div>
             )}
           </div>
+        </div>
+        <div className="flex items-center gap-2 ml-306">
+          <span className="text-[#8A92A0] text-xs font-semibold whitespace-nowrap">
+            Sort By
+          </span>
+          <select
+            value={sortBy}
+            onChange={(e) =>
+              setSortBy(e.target.value as "Duration" | "Calories" | "Rating")
+            }
+            className="bg-[#12141a] text-white text-xs border border-[#1e222d] rounded-lg px-3 py-2 outline-none cursor-pointer"
+          >
+            <option value={"Duration"}>Duration</option>
+            <option value={"Calories"}>Calories</option>
+            <option value={"Rating"}>Rating</option>
+          </select>
         </div>
       </div>
     </div>
