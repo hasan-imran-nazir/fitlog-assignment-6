@@ -138,7 +138,7 @@ const Page = () => {
             )}
           </div>
         </div>
-        <div className="mt-4 flex flex-wrap items-center justify-end gap-2 sm:mt-0">
+        <div className="mt-4 ml-auto flex shrink-0 flex-wrap items-center justify-end gap-2 sm:mt-0">
           <span className="text-[#8A92A0] text-xs font-semibold whitespace-nowrap">
             Sort By
           </span>
