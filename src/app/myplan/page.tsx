@@ -10,17 +10,17 @@ const Page = () => {
   const [sortBy, setSortBy] = useState<"Duration" | "Calories" | "Rating">(
     "Duration",
   );
-  const sortWorkouts = (workouts: IWorkoutTypes[]) =>{
+  const sortWorkouts = (workouts: IWorkoutTypes[]) => {
     const sortedWorkouts = [...workouts];
     if (sortBy === "Duration") {
       sortedWorkouts.sort((a, b) => a.duration - b.duration);
-    }else if (sortBy === "Calories") {
+    } else if (sortBy === "Calories") {
       sortedWorkouts.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
-    }else if (sortBy === "Rating") {
+    } else if (sortBy === "Rating") {
       sortedWorkouts.sort((a, b) => b.rating - a.rating);
     }
     return sortedWorkouts;
-  }
+  };
   const sortedAddedWorkouts = sortWorkouts(context?.addWorkout || []);
   const sortedSavedWorkouts = sortWorkouts(context?.saveWorkout || []);
 
@@ -39,22 +39,22 @@ const Page = () => {
     0,
   );
   return (
-    <div className="container mx-auto">
-      <div className="flex flex-col ml-5 mt-10">
+    <div className="container mx-auto px-4 sm:px-6">
+      <div className="mt-8 flex flex-col sm:mt-10">
         <h2 className="text-3xl font-bold">MY PLAN</h2>
         <p className="text-zinc-400 mt-2.5">
           Cap of five lifts for today. Finish them, then load more.
         </p>
       </div>
-      <div className="bg-[#12141a] border border-[#1e222d] rounded-2xl p-6 grid grid-cols-3 mt-6">
-        <div className="flex flex-col pl-2">
+      <div className="mt-6 grid grid-cols-1 gap-5 rounded-2xl border border-[#1e222d] bg-[#12141a] p-5 sm:grid-cols-3 sm:gap-0 sm:p-6">
+        <div className="flex flex-col">
           <span className="text-[#8A92A0] text-xs mb-1">Exercises</span>
           <span className="text-4xl font-extrabold text-[#ccff00]">
             {selectedWorkouts.length}
           </span>
         </div>
 
-        <div className="flex flex-col pl-6">
+        <div className="flex flex-col">
           <span className="text-[#8A92A0] text-xs font-medium mb-1">
             Minutes
           </span>
@@ -63,7 +63,7 @@ const Page = () => {
           </span>
         </div>
 
-        <div className="flex flex-col pl-6">
+        <div className="flex flex-col">
           <span className="text-[#8A92A0] text-xs font-medium mb-1">
             Calories
           </span>
@@ -138,7 +138,7 @@ const Page = () => {
             )}
           </div>
         </div>
-        <div className="flex items-center gap-2 ml-306">
+        <div className="mt-4 flex flex-wrap items-center justify-end gap-2 sm:mt-0">
           <span className="text-[#8A92A0] text-xs font-semibold whitespace-nowrap">
             Sort By
           </span>

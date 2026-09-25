@@ -24,7 +24,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
     (w: IWorkoutTypes) => w.id === Number(id),
   ) as IWorkoutTypes;
   return (
-    <div className="container mx-auto bg-[#0d0d0e] p-8 rounded-2xl">
+    <div className="container mx-auto rounded-2xl bg-[#0d0d0e] px-4 py-6 sm:p-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-[#121318]">
           <Image
@@ -39,7 +39,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
 
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl lg:text-4xl font-extrabold uppercase tracking-tight text-white leading-none">
+            <h1 className="text-2xl font-extrabold uppercase leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
               {workout.name}
             </h1>
             <p className="text-zinc-400 text-sm mt-3 leading-relaxed">
@@ -58,7 +58,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
           </div>
 
           <div className="bg-[#121318] rounded-xl p-4 border border-zinc-800/60 divide-y divide-zinc-800/60">
-            <div className="flex justify-between items-center py-2 text-xs">
+            <div className="flex flex-col items-start gap-1 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-[#9CA3AF] font-bold tracking-wider text-[12px]">
                 EQUIPMENT
               </span>
@@ -69,7 +69,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-2 text-xs">
+            <div className="flex flex-col items-start gap-1 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-[#9CA3AF] uppercase font-bold tracking-wider text-[12px]">
                 DIFFICULTY
               </span>
@@ -78,7 +78,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-2 text-xs">
+            <div className="flex flex-col items-start gap-1 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-[#9CA3AF] uppercase font-bold tracking-wider text-[12px]">
                 SETS
               </span>
@@ -87,7 +87,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-2 text-xs">
+            <div className="flex flex-col items-start gap-1 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-[#9CA3AF] font-bold tracking-wider text-[12px]">
                 REPS
               </span>
@@ -96,7 +96,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-2 text-xs">
+            <div className="flex flex-col items-start gap-1 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-[#9CA3AF] font-bold tracking-wider text-[12px]">
                 DURATION
               </span>
@@ -105,7 +105,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-2 text-xs">
+            <div className="flex flex-col items-start gap-1 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-[#9CA3AF] font-bold tracking-wider text-[12px]">
                 CALORIES
               </span>
@@ -114,7 +114,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
               </span>
             </div>
 
-            <div className="flex justify-between items-center py-2 text-xs">
+            <div className="flex flex-col items-start gap-1 py-2 text-xs sm:flex-row sm:items-center sm:justify-between">
               <span className="text-[#9CA3AF] uppercase font-bold tracking-wider text-[12px]">
                 RATING
               </span>
@@ -139,8 +139,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <AddToday workout={workout} />
 
-            <SaveWorkout workout={workout}/>
-
+            <SaveWorkout workout={workout} />
           </div>
         </div>
       </div>

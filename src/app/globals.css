@@ -1,8 +1,24 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-
 :root {
-  background-color:#0C0D10;
+  background-color: #0c0d10;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }

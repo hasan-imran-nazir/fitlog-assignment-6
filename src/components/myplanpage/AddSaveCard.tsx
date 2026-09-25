@@ -68,13 +68,14 @@ const AddSaveCard = (props: IAddSaveCardProps) => {
     }
   };
   return (
-    <div className="bg-[#14171E] border border-[#1e222d] rounded-2xl p-4 flex items-center justify-between gap-4">
-      <div className="flex items-center gap-4">
-        <div className="relative w-32 h-20 rounded-xl overflow-hidden shrink-0">
+    <div className="flex flex-col gap-4 rounded-2xl border border-[#1e222d] bg-[#14171E] p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex min-w-0 items-center gap-4">
+        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-xl sm:w-32">
           <Image
             src={workout.image}
             alt={workout.name}
             fill
+            sizes="(max-width: 640px) 96px, 128px"
             className="object-cover"
           />
         </div>
@@ -89,7 +90,7 @@ const AddSaveCard = (props: IAddSaveCardProps) => {
               : workout.equipment}
           </p>
 
-          <div className="flex items-center gap-3 text-xs text-zinc-400 pt-1">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-1 text-xs text-zinc-400">
             <div className="flex items-center gap-1 text-[#ccff00]">
               <FaRegClock />
               <span className="text-[#D1D5DB]">{workout.duration} min</span>
@@ -108,7 +109,7 @@ const AddSaveCard = (props: IAddSaveCardProps) => {
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex w-full flex-wrap items-center justify-end gap-3 sm:w-auto">
         <Link
           href={`/workout/${workout.id}`}
           className="border border-zinc-700/80 hover:border-zinc-500 text-white text-xs font-medium px-4 py-2.5 rounded-full transition-colors"

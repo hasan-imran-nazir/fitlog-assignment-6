@@ -8,8 +8,10 @@ const WorkoutCard = (props: { workout: IWorkoutTypes }) => {
   return (
     <div className="flex justify-center">
       <Link
-        href={`/workout/${props.workout.id}`}>
-        <div className="w-full max-w-sm bg-[#15171D] rounded-2xl overflow-hidden border border-[#222630] shadow-lg text-white">
+        href={`/workout/${props.workout.id}`}
+        className="block w-full max-w-sm"
+      >
+        <div className="w-full overflow-hidden rounded-2xl border border-[#222630] bg-[#15171D] text-white shadow-lg">
           <div className="relative w-full h-48 overflow-hidden">
             <Image
               src={props.workout.image}
@@ -44,7 +46,7 @@ const WorkoutCard = (props: { workout: IWorkoutTypes }) => {
             </div>
 
             <div className="border-t border-zinc-800/80 pt-3">
-              <div className="flex items-center gap-4 text-[#9CA3AF] text-xs">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-[#9CA3AF]">
                 <div className="flex items-center gap-1.5">
                   <FaRegClock />
                   <span>{props.workout.duration} min</span>
